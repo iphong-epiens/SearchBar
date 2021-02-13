@@ -33,6 +33,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        searchBarTextField.addLeftPadding()
+
         searchBarTextField.rightViewMode = UITextField.ViewMode.always
     }
     
@@ -81,10 +83,11 @@ class ViewController: UIViewController {
         searchBar.setPositionAdjustment(UIOffset(horizontal: -10, vertical: 0), for: .bookmark)
         searchBar.backgroundImage = UIImage()
         searchBtn.tintColor = .lightGray
-        
+
         searchBarTextField.leftView = nil
-        searchBarTextField.placeholder = ""
+        searchBarTextField.placeholder = "닉네임/아이디 검색"
         searchBarTextField.textAlignment = .left
+        searchBarTextField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         searchBarTextField.layer.cornerRadius = 4
         searchBarTextField.layer.borderWidth = 1
         searchBarTextField.layer.borderColor = UIColor(white: 219.0 / 255.0, alpha: 1.0).cgColor
@@ -105,4 +108,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
+}
+extension UITextField {
+  func addLeftPadding() {
+    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+    self.leftView = paddingView
+    self.leftViewMode = ViewMode.always
+  }
 }
